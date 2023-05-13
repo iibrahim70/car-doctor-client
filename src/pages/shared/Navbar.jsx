@@ -5,7 +5,7 @@ import logo from '../../assets/logo.svg';
 const Navbar = () => {
   const navItems = <>
     <Link to='/'>Home</Link>
-    <Link>About</Link>
+    <Link to={'/about'}>About</Link>
   </>
   return (
     <div className="navbar bg-base-100 py-5">
@@ -22,7 +22,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
-        <button className='btn btn-outline btn-warning'>Appoinment</button>
+        <button className='px-4 py-3 border border-[#FF3811] text-[#FF3811] font-medium uppercase rounded-md'>Appoinment</button>
       </div>
     </div>
   );
