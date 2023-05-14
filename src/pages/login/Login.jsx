@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import img from '../../assets/images/login/login.svg';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
-  const { user, signIn } = useContext(AuthContext); 
+  const { signIn } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+
+  console.log(loading);
   const handleLogin = e => {
     e.preventDefault();
+    setLoading(true);
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
@@ -16,10 +20,14 @@ const Login = () => {
       .then(res => {
         const user = res.user;
         console.log(user);
+        setLoading(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setLoading(false);
+      });
   }
-  
+
   return (
     <div className="hero min-h-screen w-[90%] mx-auto bg-red-200">
       <div className="hero-content flex-col lg:flex-row">
@@ -46,7 +54,9 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <input className='btn btn-primary' type="submit" value="Login" />
+                {loading ? <progress className="progress w-56"></progress> : 
+                  <input className='btn btn-primary' type="submit" value="Login" />
+                }
               </div>
             </form>
             <p className='my-5 text-center'>New to Car Doctors? <Link className='font-bold text-[#FF3811]' to={'/signup'}>Signup</Link></p>
