@@ -1,25 +1,44 @@
 import React, { useContext, useState } from 'react';
 import img from '../../assets/images/login/login.svg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const location = useLocation(); 
+  const navigate = useNavigate(); 
 
-  console.log(loading);
+  const from = location.state?.from?.pathname || '/'; 
+
   const handleLogin = e => {
     e.preventDefault();
     setLoading(true);
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
 
     signIn(email, password)
       .then(res => {
         const user = res.user;
-        console.log(user);
+        const loggedUser = {
+          email: user.email
+        }
+        console.log(loggedUser);
+        fetch('http://localhost:5000/jwt', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json' 
+          },
+          body: JSON.stringify(loggedUser)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log('jwt response', data);
+          // warning local storage is not the best (second best place) place to store access token
+          localStorage.setItem('car-access-token', data.token);
+          navigate(from, { replace: true });
+        })
         setLoading(false);
       })
       .catch(err => {

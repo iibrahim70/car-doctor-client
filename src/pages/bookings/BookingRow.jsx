@@ -3,8 +3,6 @@ import React from 'react';
 const BookingRow = ({ booking, handleDelete, handleBookingConfirm }) => {
   const { _id, bookingDate, service_title, price, img, status } = booking;
   
-  
-
   return (
     <>
       <tr>
