@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext); 
+  const { user, signIn } = useContext(AuthContext); 
   const handleLogin = e => {
     e.preventDefault();
     const form = e.target;
@@ -21,7 +21,7 @@ const Login = () => {
   }
   
   return (
-    <div className="hero min-h-screen bg-red-200">
+    <div className="hero min-h-screen w-[90%] mx-auto bg-red-200">
       <div className="hero-content flex-col lg:flex-row">
         <div className="w-1/2">
           <img src={img} alt="" />

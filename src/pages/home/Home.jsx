@@ -5,11 +5,11 @@ import Services from './Services';
 
 const Home = () => {
   return (
-    <>
+    <div className='w-[90%] mx-auto'>
       <Banner/>
       <About/>
       <Services/>
-    </>
+    </div>
   );
 };
 
