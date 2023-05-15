@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import img from '../../assets/images/login/login.svg';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import SocialLogin from '../shared/SocialLogin';
 
 const Signup = () => {
   const { createUser } = useContext(AuthContext); 
@@ -9,10 +10,8 @@ const Signup = () => {
   const handleSignup = e => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value; 
     const email = form.email.value; 
     const password = form.password.value;
-    console.log(name, email, password);
 
     createUser(email, password)
       .then(res => {
@@ -23,7 +22,7 @@ const Signup = () => {
   }
 
   return (
-    <div className="hero min-h-screen w-[90%] mx-auto bg-red-200">
+    <div className="hero min-h-screen w-[90%] mx-auto my-20">
       <div className="hero-content flex-col lg:flex-row">
         <div className="w-1/2">
           <img src={img} alt="" />
@@ -55,6 +54,7 @@ const Signup = () => {
               </div>
             </form>
             <p className='my-5 text-center'>Already Have Account? <Link className='font-bold text-[#FF3811]' to={'/login'}>Login</Link></p>
+            <SocialLogin/>
           </div>
         </div>
       </div>

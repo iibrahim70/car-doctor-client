@@ -25,7 +25,7 @@ const Checkout = () => {
     }
     console.log(bookingInformation);
 
-    fetch('http://localhost:5000/bookings', {
+    fetch('https://car-doctor-server-sigma-sand.vercel.app/bookings', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -54,8 +54,8 @@ const Checkout = () => {
   }
 
   return (
-    <div className='w-[90%] mx-auto'>
-      <h2 className='text-center text-3xl font-medium'>Check Out: {title}</h2>
+    <div className='w-[90%] mx-auto my-20'>
+      <h2 className='text-center text-3xl font-medium mb-5'>Check Out: {title}</h2>
       <form onSubmit={handleCheckOut}>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
           <div className="form-control">
@@ -83,7 +83,7 @@ const Checkout = () => {
             <input type="text" name='due' defaultValue={'$'+ price} className="input input-bordered" />
           </div>
         </div>
-        <div className="form-control my-5">
+        <div className="form-control mt-8">
           <button className="px-4 py-2 border border-[#FF3811] bg-[#FF3811] text-white font-medium rounded-md uppercase">Order Confirm</button>
         </div>
       </form>

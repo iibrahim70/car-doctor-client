@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import img from '../../assets/images/login/login.svg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import SocialLogin from '../shared/SocialLogin';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -21,24 +22,8 @@ const Login = () => {
     signIn(email, password)
       .then(res => {
         const user = res.user;
-        const loggedUser = {
-          email: user.email
-        }
-        console.log(loggedUser);
-        fetch('http://localhost:5000/jwt', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json' 
-          },
-          body: JSON.stringify(loggedUser)
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log('jwt response', data);
-          // warning local storage is not the best (second best place) place to store access token
-          localStorage.setItem('car-access-token', data.token);
-          navigate(from, { replace: true });
-        })
+        console.log(user);
+        navigate(from, { replace: true });
         setLoading(false);
       })
       .catch(err => {
@@ -48,7 +33,7 @@ const Login = () => {
   }
 
   return (
-    <div className="hero min-h-screen w-[90%] mx-auto bg-red-200">
+    <div className="hero min-h-screen w-[90%] mx-auto my-20">
       <div className="hero-content flex-col lg:flex-row">
         <div className="w-1/2">
           <img src={img} alt="" />
@@ -79,6 +64,7 @@ const Login = () => {
               </div>
             </form>
             <p className='my-5 text-center'>New to Car Doctors? <Link className='font-bold text-[#FF3811]' to={'/signup'}>Signup</Link></p>
+            <SocialLogin/>
           </div>
         </div>
       </div>

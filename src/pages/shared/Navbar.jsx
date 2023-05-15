@@ -8,16 +8,14 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOut()
-    .then(() => {
-      localStorage.removeItem('car-access-token'); 
-    })
+    .then(() => {})
     .catch(err => console.log(err))
   }
 
   const navItems = <>
     <Link to='/'>Home</Link>
     <Link to='/about'>About</Link>
-    {user && <Link to='bookings'>My Bookings</Link>}
+    {user && <Link to='bookings'>Bookings</Link>}
   </>
 
   return (

@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth';
 import app from '../firebase/firebase.config';
 
 export const AuthContext = createContext(); 
@@ -8,6 +8,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null); 
   const [loading, setLoading] = useState(true);
+  const googleProvider = new GoogleAuthProvider; 
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -16,7 +17,12 @@ const AuthProvider = ({ children }) => {
 
   const signIn = (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password); 
+    return signInWithEmailAndPassword (auth, email, password); 
+  }
+
+  const googleLogin = () => {
+    setLoading(true); 
+    return signInWithPopup(auth, googleProvider); 
   }
 
   const logOut = () => {
@@ -28,6 +34,27 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser); 
       console.log('current user', currentUser);
+      if(currentUser && currentUser.email){
+        const loggedUser = {
+          email: currentUser.email
+        }
+        fetch('https://car-doctor-server-sigma-sand.vercel.app/jwt', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(loggedUser)
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log('jwt response', data);
+            // warning local storage is not the best (second best place) place to store access token
+            localStorage.setItem('car-access-token', data.token);
+          })
+      }
+      else{
+        localStorage.removeItem('car-access-token'); 
+      }
       setLoading(false);
     }); 
     return () => {
@@ -39,7 +66,8 @@ const AuthProvider = ({ children }) => {
     user,
     loading,
     createUser, 
-    signIn, 
+    signIn,
+    googleLogin, 
     logOut,
   }
 

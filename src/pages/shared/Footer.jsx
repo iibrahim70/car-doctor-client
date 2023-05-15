@@ -6,27 +6,24 @@ const Footer = () => {
     <footer className="footer p-10 bg-black text-[#f3f3f3c8]">
       <div>
         <img src={logo} alt="" />
-        <p>ACME Industries Ltd.<br />Providing reliable tech since 1992</p>
+        <p>Edwin Diaz is a software and web <br /> technologies engineer, a life coach <br /> trainer who is also a serial .</p>
       </div>
       <div>
-        <span className="font-bold mb-2 uppercase text-white">Services</span>
-        <a className="link link-hover">Branding</a>
-        <a className="link link-hover">Design</a>
-        <a className="link link-hover">Marketing</a>
-        <a className="link link-hover">Advertisement</a>
+        <span className="font-bold mb-2 uppercase text-white">About</span>
+        <a className="link link-hover">Home</a>
+        <a className="link link-hover">Service</a>
+        <a className="link link-hover">Contact</a>
       </div>
       <div>
         <span className="font-bold mb-2 uppercase text-white">Company</span>
-        <a className="link link-hover">About us</a>
-        <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Jobs</a>
-        <a className="link link-hover">Press kit</a>
+        <a className="link link-hover">Why Car Doctor</a>
+        <a className="link link-hover">About</a>
       </div>
       <div>
-        <span className="font-bold mb-2 uppercase text-white">Legal</span>
-        <a className="link link-hover">Terms of use</a>
-        <a className="link link-hover">Privacy policy</a>
-        <a className="link link-hover">Cookie policy</a>
+        <span className="font-bold mb-2 uppercase text-white">Support</span>
+        <a className="link link-hover">Support Center</a>
+        <a className="link link-hover">Feedback</a>
+        <a className="link link-hover">Accesbility</a>
       </div>
     </footer>
   );
