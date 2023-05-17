@@ -1,15 +1,15 @@
 import React from 'react';
-import Banner from './Banner';
-import About from './About';
-import Services from './Services';
+import Banner from '../../components/Banner';
+import About from '../shared/About';
+import Services from '../services/Services';
 
 const Home = () => {
   return (
-    <div className='w-[90%] mx-auto'>
-      <Banner/>
-      <About/>
+    <>
+      <Banner />
+      <About />
       <Services/>
-    </div>
+    </>
   );
 };
 

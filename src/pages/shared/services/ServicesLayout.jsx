@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ServiceCard from './ServiceCard';
 
-const Services = () => {
+const ServicesLayout = () => {
   const [services, setServices] = useState([]); 
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const Services = () => {
   }, [])
 
   return (
-    <div className='my-20'>   
+    <div className='mb-20'>   
       <div className='text-center space-y-5'>
         <h3 className='text-2xl text-[#FF3811] font-bold'>Services</h3>
         <h2 className='text-5xl font-bold'>Our Service Area</h2>
@@ -26,4 +26,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default ServicesLayout;

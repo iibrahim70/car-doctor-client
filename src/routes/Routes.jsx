@@ -3,10 +3,11 @@ import Main from "../layout/Main";
 import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import Signup from "../pages/login/Signup";
-import About from "../pages/home/About";
+import About from "../pages/shared/About";
 import Checkout from "../pages/checkout/Checkout";
 import Bookings from "../pages/bookings/Bookings";
 import PrivateRoute from "./PrivateRoute";
+import Services from "../pages/services/Services";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: '/about', 
         element: <About/>
+      },
+      {
+        path: '/services', 
+        element: <Services/>
       },
       {
         path: '/login', 
